@@ -23,7 +23,7 @@ const int EMPTY = 0;
 class Snake
 {
 private:
-    int size = 3;
+    int size;
     const int startX = 4;
     const int startY = 4;
     vector <char> ruler;
@@ -31,6 +31,7 @@ private:
 public:
     void initSnake()
     {
+        size = 3;
         ruler = vector<char> (size);
         coords = vector <pair<int, int>> (size);
         for(int i = 0;i < size; ++i)

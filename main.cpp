@@ -93,7 +93,7 @@ public:
                 snake.eraseSnake();
                 eraseMap();
                 Sleep(2000);
-                exit(1);
+                return;
             }
             if(i == 0 && map[first][second] == FRUIT)
             {
@@ -115,6 +115,9 @@ public:
     }
     void play()
     {
+        createMap();
+        createFruit();
+        showMap();
         snake.initSnake();
         for(int i = 0;i < snake.getSize(); ++i)
         {
@@ -158,6 +161,7 @@ public:
             }
             snake.changeRuler(0, lastDirection);
             changeMap();
+            if(map.empty()){return;}
             Sleep(100);
             showMap();
         }
@@ -173,8 +177,9 @@ int main() {
     unsigned seed = time(nullptr);
     srand(seed);
  Map myMap;
- myMap.createMap();
- myMap.createFruit();
- myMap.showMap();
- myMap.play();
+ while(true)
+ {
+     myMap.play();
+ }
+
 }
