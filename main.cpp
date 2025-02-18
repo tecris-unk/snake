@@ -1,4 +1,4 @@
-#include "snake.h"
+#include "functions.h"
 
 class Map {
 private:
@@ -165,11 +165,6 @@ public:
             Sleep(100);
             showMap();
         }
-    }
-    static void setColor(int background, int text)
-    {
-        HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
     }
 };
 

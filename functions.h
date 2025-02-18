@@ -4,8 +4,7 @@
 
 #ifndef SNAKE_FUNCTIONS_H
 #define SNAKE_FUNCTIONS_H
-#include <bits/stdc++.h>
 #include "snake.h"
 
-
+void setColor(int background, int text);
 #endif //SNAKE_FUNCTIONS_H
