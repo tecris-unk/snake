@@ -122,56 +122,44 @@ public:
             map[coord.first][coord.second] = SNAKE;
         }
         showMap();
+        char lastDirection = 'D';
         while (true) {
-            auto start_time = high_resolution_clock::now();
+            auto startTime = high_resolution_clock::now();
             int ch = 0;
-            bool key_pressed = false;
+            bool isKeyPressed = false;
 
-            while (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count() < 600) {
+            while (duration_cast<milliseconds>(high_resolution_clock::now() - startTime).count() < 500) {
                 if (_kbhit()) {
                     ch = _getch();
-                    key_pressed = true;
+                    isKeyPressed = true;
                     break;
                 }
+                Sleep(10);
             }
-            if (!key_pressed) {
-                changeMap();
-                showMap();
-                continue;
-            }
-            char lastDirection = 'D';
-            if (ch == 224 || ch == 0) {
-                int arrow_code = _getch();
-                char rule = snake.getRule(0);
-                switch (arrow_code) {
-                    case 72:
-                        // Код стрелки вверх
-                        if (rule == 'S') { continue; }
-                        lastDirection = 'W';
-                        break;
-                    case 80:
-                        // Код стрелки вниз
-                        if (rule == 'W') { continue; }
-                        lastDirection = 'S';
-                        break;
-                    case 77:
-                        // Код стрелки вправо
-                        if (rule == 'A') { continue; }
-                        lastDirection = 'D';
-                        break;
-                    case 75:
-                        // Код стрелки влево
-                        if (rule == 'D') { continue; }
-                        lastDirection = 'A';
-                        break;
-                    default:
-                        continue;
+
+            if (isKeyPressed) {
+                if (ch == 224 || ch == 0) {
+                    int arrow_code = _getch();
+                    switch (arrow_code) {
+                        case 72: // up
+                            lastDirection = (lastDirection == 'S') ? lastDirection : 'W';
+                            break;
+                        case 80: // down
+                            lastDirection = (lastDirection == 'W') ? lastDirection : 'S';
+                            break;
+                        case 77: // right
+                            lastDirection = (lastDirection == 'A') ? lastDirection : 'D';
+                            break;
+                        case 75: // left
+                            lastDirection = (lastDirection == 'D') ? lastDirection : 'A';
+                            break;
+                    }
                 }
-                snake.changeRuler(0, lastDirection);
-                Sleep(400);
-                changeMap();
-                showMap();
             }
+            snake.changeRuler(0, lastDirection);
+            changeMap();
+            Sleep(100);
+            showMap();
         }
     }
     static void setColor(int background, int text)
