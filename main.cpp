@@ -127,7 +127,7 @@ public:
             int ch = 0;
             bool key_pressed = false;
 
-            while (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count() < 500) {
+            while (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count() < 600) {
                 if (_kbhit()) {
                     ch = _getch();
                     key_pressed = true;
@@ -139,6 +139,7 @@ public:
                 showMap();
                 continue;
             }
+            char lastDirection = 'D';
             if (ch == 224 || ch == 0) {
                 int arrow_code = _getch();
                 char rule = snake.getRule(0);
@@ -146,27 +147,28 @@ public:
                     case 72:
                         // Код стрелки вверх
                         if (rule == 'S') { continue; }
-                        snake.changeRuler(0, 'W');
+                        lastDirection = 'W';
                         break;
                     case 80:
                         // Код стрелки вниз
                         if (rule == 'W') { continue; }
-                        snake.changeRuler(0, 'S');
+                        lastDirection = 'S';
                         break;
                     case 77:
                         // Код стрелки вправо
                         if (rule == 'A') { continue; }
-                        snake.changeRuler(0, 'D');
+                        lastDirection = 'D';
                         break;
                     case 75:
                         // Код стрелки влево
                         if (rule == 'D') { continue; }
-                        snake.changeRuler(0, 'A');
+                        lastDirection = 'A';
                         break;
                     default:
                         continue;
                 }
-                Sleep(500);
+                snake.changeRuler(0, lastDirection);
+                Sleep(400);
                 changeMap();
                 showMap();
             }
