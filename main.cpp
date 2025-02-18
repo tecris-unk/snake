@@ -1,4 +1,4 @@
-#include "class.h"
+#include "snake.h"
 
 class Map {
 private:

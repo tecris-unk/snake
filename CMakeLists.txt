@@ -6,5 +6,5 @@ set(CMAKE_CXX_STANDARD 26)
 add_executable(snake main.cpp
         functions.cpp
         functions.h
-        class.h
+        snake.h
 )

@@ -2,8 +2,8 @@
 // Created by intak on 18.02.2025.
 //
 
-#ifndef SNAKE_CLASS_H
-#define SNAKE_CLASS_H
+#ifndef SNAKE_SNAKE_H
+#define SNAKE_SNAKE_H
 #include <iostream>
 #include <vector>
 #include <conio.h>
@@ -92,4 +92,4 @@ public:
     }
 };
 
-#endif //SNAKE_CLASS_H
+#endif //SNAKE_SNAKE_H

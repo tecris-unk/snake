@@ -5,7 +5,7 @@
 #ifndef SNAKE_FUNCTIONS_H
 #define SNAKE_FUNCTIONS_H
 #include <bits/stdc++.h>
-#include "class.h"
+#include "snake.h"
 
 
 #endif //SNAKE_FUNCTIONS_H
